@@ -10,7 +10,7 @@ describe("game logic", () => {
     it("should return string with dedicated length", () => {
       const expectedLength = 4;
 
-      const result = generateSecret(expectedLength, "dec");
+      const result = generateSecret(expectedLength, "dec", () => 1);
 
       expect(result.length).toBe(expectedLength);
     });
@@ -18,7 +18,7 @@ describe("game logic", () => {
       const expectedLength = 4;
       const expectedUniqueDigits = 4;
 
-      const result = generateSecret(expectedLength, "dec");
+      const result = generateSecret(expectedLength, "dec", () => 1);
 
       expect(expectedUniqueDigits).toBe(new Set(result.split("")).size);
     });
