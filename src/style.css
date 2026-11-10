@@ -1,4 +1,94 @@
+html * {
+  font-size: 18px;
+}
+
 body {
-    margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 100px auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background: teal;
+}
+
+h1 {
+  text-align: center;
+}
+
+#app {
+  max-width: 380px;
+  margin: 8px auto;
+  width: fit-content;
+  color: #fff;
+  padding: 10px;
+}
+
+.menu-bar {
+  display: flex;
+  gap: 12px;
+  padding: 2px 4px;
+  border-bottom: 1px solid #ccc;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 6px 0;
+}
+
+.toolbar button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+  padding: 4px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+}
+
+.settings-row select {
+  flex: 1;
+}
+
+.settings-row input {
+  width: 60px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+.moves {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.moves th,
+.moves td {
+  padding: 2px 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.moves tbody td:first-child {
+  width: 24px;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 4px;
+  border-top: 1px solid #ccc;
 }

@@ -35,9 +35,15 @@ export const useSettings = (
   };
 
   return {
-    base,
-    secret,
-    secretLength,
+    get base() {
+      return base;
+    },
+    get secret() {
+      return secret;
+    },
+    get secretLength() {
+      return secretLength;
+    },
     player1Name,
     player2Name,
     regenSecret,
