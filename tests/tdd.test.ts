@@ -100,40 +100,40 @@ describe("createDigitValidator", () => {
     const validate = createDigitValidator("bin");
 
     it("should return true for a string of binary digits", () => {
-      expect(validate("0101")).toBe(true);
+      expect("0101".split("").every((symbol) => validate(symbol))).toBe(true);
     });
     it("should return false if string contains a non-binary digit", () => {
-      expect(validate("0102")).toBe(false);
+      expect("0102".split("").every((symbol) => validate(symbol))).toBe(false);
     });
   });
   describe("with 'oct' base", () => {
     const validate = createDigitValidator("oct");
 
     it("should return true for a string of octal digits", () => {
-      expect(validate("0127")).toBe(true);
+      expect("0127".split("").every((symbol) => validate(symbol))).toBe(true);
     });
     it("should return false if string contains a non-octal digit", () => {
-      expect(validate("0128")).toBe(false);
+      expect("0128".split("").every((symbol) => validate(symbol))).toBe(false);
     });
   });
   describe("with 'dec' base", () => {
     const validate = createDigitValidator("dec");
 
     it("should return true for a string of decimal digits", () => {
-      expect(validate("0129")).toBe(true);
+      expect("0129".split("").every((symbol) => validate(symbol))).toBe(true);
     });
     it("should return false if string contains a non-decimal character", () => {
-      expect(validate("01a9")).toBe(false);
+      expect("01a9".split("").every((symbol) => validate(symbol))).toBe(false);
     });
   });
   describe("with 'hex' base", () => {
     const validate = createDigitValidator("hex");
 
     it("should return true for a string of hex digits", () => {
-      expect(validate("09af")).toBe(true);
+      expect("09af".split("").every((symbol) => validate(symbol))).toBe(true);
     });
     it("should return false if string contains a non-hex character", () => {
-      expect(validate("09g1")).toBe(false);
+      expect("09g1".split("").every((symbol) => validate(symbol))).toBe(false);
     });
   });
 });

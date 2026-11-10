@@ -1,4 +1,5 @@
-import { DIGITS, type NumberBase } from "./generateSecret.ts";
+import { type NumberBase } from "./generateSecret.ts";
+import { createDigitValidator } from "./createDigitValidator.ts";
 
 export const isValidGuess = (
   guess: string,
@@ -9,6 +10,6 @@ export const isValidGuess = (
   const guessChars = guess.split("");
   const uniqueSize = new Set(guessChars).size;
   if (uniqueSize !== length) return false;
-  const digits = DIGITS[base];
-  return !guessChars.some((c) => !digits.includes(c));
+  const digitValidator = createDigitValidator(base);
+  return !guessChars.some((s) => !digitValidator(s));
 };
