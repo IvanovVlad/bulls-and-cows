@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --ignore-unknown",
+    "format": "prettier --check --ignore-unknown .",
     "format:fix": "prettier --write --ignore-unknown",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
