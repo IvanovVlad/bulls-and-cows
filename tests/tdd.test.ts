@@ -2,6 +2,7 @@ import { describe, expect, test, it, suite } from "vitest";
 import { generateSecret, type NumberBase } from "../src/generateSecret";
 import { evaluateGuess, type GuessResult } from "../src/evaluateGuess";
 import { isValidGuess } from "../src/isValidGuess";
+import { createDigitValidator } from "../src/createDigitValidator";
 
 describe("game logic", () => {
   describe("generate secret", () => {
@@ -94,6 +95,45 @@ describe("game logic", () => {
     });
   });
 });
-test("test it works", () => {
-  expect(1).toBe(1);
+describe("createDigitValidator", () => {
+  describe("with 'bin' base", () => {
+    const validate = createDigitValidator("bin");
+
+    it("should return true for a string of binary digits", () => {
+      expect(validate("0101")).toBe(true);
+    });
+    it("should return false if string contains a non-binary digit", () => {
+      expect(validate("0102")).toBe(false);
+    });
+  });
+  describe("with 'oct' base", () => {
+    const validate = createDigitValidator("oct");
+
+    it("should return true for a string of octal digits", () => {
+      expect(validate("0127")).toBe(true);
+    });
+    it("should return false if string contains a non-octal digit", () => {
+      expect(validate("0128")).toBe(false);
+    });
+  });
+  describe("with 'dec' base", () => {
+    const validate = createDigitValidator("dec");
+
+    it("should return true for a string of decimal digits", () => {
+      expect(validate("0129")).toBe(true);
+    });
+    it("should return false if string contains a non-decimal character", () => {
+      expect(validate("01a9")).toBe(false);
+    });
+  });
+  describe("with 'hex' base", () => {
+    const validate = createDigitValidator("hex");
+
+    it("should return true for a string of hex digits", () => {
+      expect(validate("09af")).toBe(true);
+    });
+    it("should return false if string contains a non-hex character", () => {
+      expect(validate("09g1")).toBe(false);
+    });
+  });
 });
