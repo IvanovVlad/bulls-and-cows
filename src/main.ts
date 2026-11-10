@@ -86,8 +86,17 @@ const timeText = createElement("span");
 const statusBar = createElement("div");
 statusBar.className = "status-bar";
 statusBar.append(statusText, timeText);
+const possibleSecrets = createElement("div");
 
-app.replaceChildren(title, toolbar, settingsRow, inputForm, table, statusBar);
+app.replaceChildren(
+  title,
+  toolbar,
+  settingsRow,
+  inputForm,
+  table,
+  statusBar,
+  possibleSecrets,
+);
 
 const formatResult = (move: UserMove): string =>
   `${move.result.bulls.length} BULL ${move.result.cows.length} COW`;
@@ -100,6 +109,10 @@ const formatElapsed = (): string => {
 
 const renderTime = () => {
   timeText.textContent = `Used ${formatElapsed()} s.`;
+};
+
+const renderPossibleSecrets = () => {
+  possibleSecrets.textContent = `Possible secrets: ${gameMaster.settings.possibleSecrets}`;
 };
 
 const rerender = () => {
@@ -128,6 +141,7 @@ const rerender = () => {
   lengthInput.disabled = !gameOver;
   statusText.textContent = message;
   renderTime();
+  renderPossibleSecrets();
 };
 
 const startRound = () => {

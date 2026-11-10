@@ -1,4 +1,5 @@
 import { generateSecret, type NumberBase } from "./generateSecret.ts";
+import { countPossibleSecrets } from "./countPossibleSecrets.ts";
 
 export type SettingsOptions = {
   base: NumberBase;
@@ -16,12 +17,14 @@ export const useSettings = (
   let base: NumberBase = options.base;
   let secretLength: number = options.length;
   let secret: string = options.secretGenerator(secretLength, base);
+  let possibleSecrets = countPossibleSecrets(secretLength, base);
 
   const player1Name = "player 1";
   const player2Name = "player 2";
 
   const regenSecret = () => {
     secret = options.secretGenerator(secretLength, base);
+    possibleSecrets = countPossibleSecrets(secretLength, base);
   };
 
   const setBase = (newBase: NumberBase) => {
@@ -43,6 +46,9 @@ export const useSettings = (
     },
     get secretLength() {
       return secretLength;
+    },
+    get possibleSecrets() {
+      return possibleSecrets;
     },
     player1Name,
     player2Name,
