@@ -7,17 +7,11 @@ export const DIGITS: Record<NumberBase, string> = {
   hex: "0123456789abcdef",
 };
 
-const MIN_LENGTH = 4;
-
 export const generateSecret = (
   length: number,
   base: NumberBase,
   random: () => number = Math.random,
 ): string => {
-  if (length < MIN_LENGTH) {
-    throw new Error(`Length should be more or equal to ${MIN_LENGTH}`);
-  }
-
   const pool = [...DIGITS[base]];
 
   if (length > pool.length) {
