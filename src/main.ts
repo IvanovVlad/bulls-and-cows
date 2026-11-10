@@ -6,6 +6,13 @@ import { DIGITS, type NumberBase } from "./generateSecret.ts";
 const app = document.querySelector<HTMLDivElement>("#app");
 if (!app) throw new Error("#app container not found");
 
+const lengthInputPreset = new Map<NumberBase, { min: number; max: number }>([
+  ["bin", { min: 2, max: 2 }],
+  ["oct", { min: 2, max: 6 }],
+  ["dec", { min: 2, max: 6 }],
+  ["hex", { min: 2, max: 6 }],
+]);
+
 const gameMaster = useGameMaster();
 let startedAt: number | null = null;
 let finishedAt: number | null = null;
@@ -132,7 +139,9 @@ const rerender = () => {
   );
 
   modeSelect.value = gameMaster.settings.base;
-  lengthInput.max = String(DIGITS[gameMaster.settings.base].length);
+  const preset = lengthInputPreset.get(gameMaster.settings.base);
+  lengthInput.max = String(preset?.max || 6);
+  lengthInput.min = String(preset?.min || 2);
   lengthInput.value = String(gameMaster.settings.secretLength);
 
   input.disabled = gameOver;
