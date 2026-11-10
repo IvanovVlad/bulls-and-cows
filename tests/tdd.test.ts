@@ -1,6 +1,7 @@
-import { describe, expect, test, it } from "vitest";
-import { generateSecret } from "../src/generateSecret";
+import { describe, expect, test, it, suite } from "vitest";
+import { generateSecret, type NumberBase } from "../src/generateSecret";
 import { evaluateGuess, type GuessResult } from "../src/evaluateGuess";
+import { isValidGuess } from "../src/isValidGuess";
 
 describe("game logic", () => {
   describe("generate secret", () => {
@@ -34,6 +35,62 @@ describe("game logic", () => {
       const result = evaluateGuess(secret, guess);
 
       expect(result).toEqual(expected);
+    });
+  });
+  describe("isValidGuess", () => {
+    it("should validate correctly", () => {
+      const guess = "1234";
+      const length = 4;
+      const base: NumberBase = "dec";
+
+      const result = isValidGuess(guess, length, base);
+
+      expect(result).toBe(true);
+    });
+    suite("should return false if length not match", () => {
+      const guess = "zxcv";
+      const length = 4;
+
+      test("with 'bin' base", () => {
+        const base: NumberBase = "bin";
+
+        const result = isValidGuess(guess, length, base);
+
+        expect(result).toBe(false);
+      });
+
+      test("with 'oct' base", () => {
+        const base: NumberBase = "oct";
+
+        const result = isValidGuess(guess, length, base);
+
+        expect(result).toBe(false);
+      });
+
+      test("with 'dec' base", () => {
+        const base: NumberBase = "dec";
+
+        const result = isValidGuess(guess, length, base);
+
+        expect(result).toBe(false);
+      });
+
+      test("with 'hex' base", () => {
+        const base: NumberBase = "hex";
+
+        const result = isValidGuess(guess, length, base);
+
+        expect(result).toBe(false);
+      });
+    });
+    it("should return false if numbers repeating", () => {
+      const guess = "1123";
+      const length = 4;
+      const base: NumberBase = "dec";
+
+      const result = isValidGuess(guess, length, base);
+
+      expect(result).toBe(false);
     });
   });
 });
