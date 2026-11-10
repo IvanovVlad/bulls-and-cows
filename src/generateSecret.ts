@@ -1,6 +1,6 @@
 export type NumberBase = "bin" | "oct" | "dec" | "hex";
 
-const DIGITS: Record<NumberBase, string> = {
+export const DIGITS: Record<NumberBase, string> = {
   bin: "01",
   oct: "01234567",
   dec: "0123456789",
