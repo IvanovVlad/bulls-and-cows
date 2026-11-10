@@ -1,5 +1,6 @@
 import { describe, expect, test, it } from "vitest";
 import { generateSecret } from "../src/generateSecret";
+import { evaluateGuess, type GuessResult } from "../src/evaluateGuess";
 
 describe("game logic", () => {
   describe("generate secret", () => {
@@ -22,6 +23,17 @@ describe("game logic", () => {
       const result = generateSecret(expectedLength, "dec");
 
       expect(expectedUniqueDigits).toBe(new Set(result.split("")).size);
+    });
+  });
+  describe("evaluate guess", () => {
+    it("should evaluate correctly on example", () => {
+      const secret = "4271";
+      const guess = "1234";
+      const expected: GuessResult = { bulls: "2", cows: "41" };
+
+      const result = evaluateGuess(secret, guess);
+
+      expect(result).toEqual(expected);
     });
   });
 });
