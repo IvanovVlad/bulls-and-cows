@@ -4,5 +4,15 @@ export type GuessResult = {
 };
 
 export const evaluateGuess = (secret: string, guess: string): GuessResult => {
-  throw new Error(secret + guess);
+  return secret.split("").reduce(
+    (acc, v, i) => {
+      if (guess[i] === v) {
+        acc.bulls += v;
+      } else if (guess.includes(v)) {
+        acc.cows += v;
+      }
+      return acc;
+    },
+    { bulls: "", cows: "" },
+  );
 };
