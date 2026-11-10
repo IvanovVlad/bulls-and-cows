@@ -156,7 +156,7 @@ inputForm.addEventListener("submit", (event) => {
   event.preventDefault();
   if (gameMaster.gameOver) return;
 
-  const guess = input.value.trim();
+  const guess = input.value.trim().toLowerCase();
   const { base, secretLength } = gameMaster.settings;
   if (!isValidGuess(guess, secretLength, base)) {
     message = `Invalid guess`;

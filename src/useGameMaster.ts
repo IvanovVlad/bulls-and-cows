@@ -24,6 +24,7 @@ export const useGameMaster = () => {
   };
 
   const makeMove = (guess: string) => {
+    guess = guess.toLowerCase();
     if (moves.some((m) => m.guess === guess)) return;
     const result = evaluateGuess(settings.secret, guess);
     moves = [...moves, { playerName: activePlayer, guess, result }];
